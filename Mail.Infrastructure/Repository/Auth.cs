@@ -7,28 +7,28 @@ public class Auth : IAuth
 {
     private static readonly string salt = "SaL@m In MatN AMniaTi Ma HastesH masalan !"; //سلام این متن امنیتی ما هستش مثلا ! 
     private Context db = new Context();
-    // public string login(login user)
-    // {
-    //     User check = db.user_tbl.FirstOrDefault(x=> x.Username == user.Username);
-    //     if(check == null){
-    //         return "Invalid Username";
-    //     }
-    //     else if(!BCrypt.Net.BCrypt.Verify(user.Password+salt+user.Username.ToLower(),check.Password)){
-    //         return "Incorrect Password";
-    //     }
-    //     else{
-    //         return TokenMaker(user.Username.ToLower());
-    //     }
-
-    // }
-    public string login(login user){
-        if(user.Username == "admin" && user.Password == "admin"){
-            return TokenMaker(user.Username);
+    public string login(login user)
+    {
+        User check = db.user_tbl.FirstOrDefault(x=> x.Username == user.Username);
+        if(check == null){
+            return "Invalid Username";
+        }
+        else if(!BCrypt.Net.BCrypt.Verify(user.Password+salt+user.Username.ToLower(),check.Password)){
+            return "Incorrect Password";
         }
         else{
-            return "invalid";
+            return TokenMaker(user.Username.ToLower());
         }
+
     }
+    // public string login(login user){
+    //     if(user.Username == "admin" && user.Password == "admin"){
+    //         return TokenMaker(user.Username);
+    //     }
+    //     else{
+    //         return "invalid";
+    //     }
+    // }
 
     public string Register(Register user)
     {
@@ -47,9 +47,12 @@ public class Auth : IAuth
                 NationalCode = user.NationalCode,
                 PersonnalCode = user.PersonnalCode,
                 SmsCode = "-1",
+                Profile = user.Profile,
+                token = "",
                 Phone = user.Phone
             };
             db.user_tbl.Add(newUser);
+            db.SaveChanges();
             return "Register Successful";
         }
         

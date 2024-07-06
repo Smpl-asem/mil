@@ -6,5 +6,6 @@ public class Register
     public string LastName { get; set; }
     public string NationalCode { get; set; }
     public string PersonnalCode { get; set; }
+    public string Profile { get; set; }
     public string Phone { get; set; }
 }
