@@ -1,20 +1,33 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+
 public class Auth : IAuth
 {
     private static readonly string salt = "SaL@m In MatN AMniaTi Ma HastesH masalan !"; //سلام این متن امنیتی ما هستش مثلا ! 
     private Context db = new Context();
-    public string login(login user)
-    {
-        User check = db.user_tbl.FirstOrDefault(x=> x.Username == user.Username);
-        if(check == null){
-            return "Invalid Username";
-        }
-        else if(!BCrypt.Net.BCrypt.Verify(user.Password+salt+user.Username.ToLower(),check.Password)){
-            return "Incorrect Password";
+    // public string login(login user)
+    // {
+    //     User check = db.user_tbl.FirstOrDefault(x=> x.Username == user.Username);
+    //     if(check == null){
+    //         return "Invalid Username";
+    //     }
+    //     else if(!BCrypt.Net.BCrypt.Verify(user.Password+salt+user.Username.ToLower(),check.Password)){
+    //         return "Incorrect Password";
+    //     }
+    //     else{
+    //         return TokenMaker(user.Username.ToLower());
+    //     }
+
+    // }
+    public string login(login user){
+        if(user.Username == "admin" && user.Password == "admin"){
+            return TokenMaker(user.Username);
         }
         else{
-            return "Login Successful";
+            return "invalid";
         }
-
     }
 
     public string Register(Register user)
@@ -96,5 +109,24 @@ public class Auth : IAuth
     private void smsSender(string phone , string SmsCode){
         // Code For Sms
         throw new NotImplementedException();
+    }
+
+    private string TokenMaker(string Username){
+        SymmetricSecurityKey secretKey = new SymmetricSecurityKey(Encoding.Default.GetBytes("Zende Bad Bar Shoma Dost azIz ! in matn testi mane"));
+        SigningCredentials Credentials = new SigningCredentials(secretKey , SecurityAlgorithms.HmacSha256);
+        
+        Claim[] claims = new Claim[]{
+            new Claim("username",Username)
+        };
+
+        var token = new JwtSecurityToken(
+            issuer: "http://localhost:5110",
+            audience: "http://localhost:5110",
+            claims: claims,         
+            expires: DateTime.Now.AddMinutes(30),
+            signingCredentials: Credentials
+        ); 
+        
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }

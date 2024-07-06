@@ -8,7 +8,7 @@ public class UserController:Controller
     {
         us = _us;
     }
-    
+
     [HttpPut]
     public IActionResult UpdateData(UpdateUser user){
         return Ok(us.UpdateUsers(user));
@@ -16,7 +16,8 @@ public class UserController:Controller
 
     [HttpPut]
     public IActionResult ChangePassword(NewPass user){
-        return Ok(us.ChangePassword(User.Claims.FirstOrDefault(x=> x.Type == "username").Value ,user));
+        // return Ok(us.ChangePassword(User.Claims.FirstOrDefault(x=> x.Type == "username").Value ,user));
+        return Ok(User.Claims.FirstOrDefault(x=> x.Type == "username").Value);
     }
 
     [HttpGet]

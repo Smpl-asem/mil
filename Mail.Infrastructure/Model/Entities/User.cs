@@ -15,7 +15,5 @@ public class User
     public bool IsCodeValid { get; set; }
     public string Profile { get; set; }
     public string token { get; set; }
-    public List<int> UserLogsId { get; set; }
-    public List<UserLog> UserLogs { get; set; }
     public DateTime CreateTime { get; set; }
 }
