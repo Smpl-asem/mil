@@ -20,7 +20,6 @@ public class UserController:Controller
     [Authorize]
     public IActionResult ChangePassword(NewPass user){
         return Ok(us.ChangePassword(User.Claims.SingleOrDefault(x=> x.Type == "username").Value ,user));
-        // return Ok(User.Claims.FirstOrDefault(x=> x.Type == "username").Value);
     }
 
     [HttpGet]
@@ -30,7 +29,7 @@ public class UserController:Controller
     }
 
     [HttpGet]
-    // [Authorize]
+    [Authorize]
     public IActionResult UserDatas(){
         return Ok(us.UserDatas());
     }
