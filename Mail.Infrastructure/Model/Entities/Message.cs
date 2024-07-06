@@ -7,6 +7,7 @@ public class Message
     public int Id { get; set; }
     public string SerialNumber { get; set; }
     public int SenderId { get; set; }
+    public User User { get; set; }
     public string SenderIp { get; set; }
     public List<int> ReceiversId { get; set; }
     public List<Receivers> Receivers { get; set; }
@@ -20,5 +21,5 @@ public class Message
     public string Subject { get; set; }
     public string BodyText { get; set; }
     public List<int> AttachedFilesId { get; set; }
-    public List<AttachedFiles> AttachedFiles { get; set; }
+    public List<AttachedFile> AttachedFiles { get; set; }
 }
