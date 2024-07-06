@@ -1,5 +1,6 @@
 public class SimpleMessage
 {
+    public int Id { get; set; }
     public string SerialNumber { get; set; }
     public int SenderId { get; set; }
     public string SenderIp { get; set; }

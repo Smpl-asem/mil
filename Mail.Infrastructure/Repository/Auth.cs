@@ -1,7 +1,7 @@
 public class Auth : IAuth
 {
-    private readonly string salt = "SaL@m In MatN AMniaTi Ma HastesH masalan !"; //سلام این متن امنیتی ما هستش مثلا ! 
-    Context db = new Context();
+    private static readonly string salt = "SaL@m In MatN AMniaTi Ma HastesH masalan !"; //سلام این متن امنیتی ما هستش مثلا ! 
+    private Context db = new Context();
     public string login(login user)
     {
         User check = db.user_tbl.FirstOrDefault(x=> x.Username == user.Username);
@@ -71,7 +71,7 @@ public class Auth : IAuth
         }
         else{
             if(check.SmsCode == user.SmsCode){
-                check.Password = BCrypt.Net.BCrypt.HashPassword(user.NewPassword+salt+user.Username.ToLower());
+                check.Password = PassMaker(user.NewPassword , user.Username.ToLower());
                 check.IsCodeValid = false;
                 db.user_tbl.Update(check);
                 db.SaveChanges();
@@ -85,6 +85,14 @@ public class Auth : IAuth
             }
         }
     }
+    
+    public static string PassMaker(string Password , string Username){
+        return BCrypt.Net.BCrypt.HashPassword(Password + salt + Username);
+    }
+    public static bool isPassValid(string Password , string Username , string hash){
+        return BCrypt.Net.BCrypt.Verify(Password+salt+Username,hash);
+    }
+
     private void smsSender(string phone , string SmsCode){
         // Code For Sms
         throw new NotImplementedException();

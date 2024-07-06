@@ -6,6 +6,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IAuth,Auth>();
+builder.Services.AddScoped<IUser,Users>();
 
 var app = builder.Build();
 
