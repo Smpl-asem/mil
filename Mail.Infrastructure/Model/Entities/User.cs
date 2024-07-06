@@ -11,6 +11,8 @@ public class User
     public string NationalCode { get; set; }
     public string PersonnalCode { get; set; }
     public string Phone { get; set; }
+    public string SmsCode { get; set; }
+    public bool IsCodeValid { get; set; }
     public string Profile { get; set; }
     public string token { get; set; }
     public List<int> UserLogsId { get; set; }
