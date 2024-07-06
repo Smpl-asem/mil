@@ -1,11 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
-public class UserLog
+public class SimpleUserLog
 {
-    [Key]
     public int Id { get; set; }
     public int UserId { get; set; }
-    public User User { get; set; }
     public string Action { get; set; }
     public DateTime CreateTime { get; set; }
 }
