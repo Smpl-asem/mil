@@ -10,8 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-builder.Services.AddScoped<IAuth,Auth>();
-builder.Services.AddScoped<IUser,Users>();
+builder.Services.AddScoped<IAuth,AuthRepository>();
+builder.Services.AddScoped<IUser,UsersRepository>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

@@ -5,6 +5,7 @@ public class Message
     // Head ->
     [Key]
     public int Id { get; set; }
+    public DateTime CreateTime { get; set; }
     public string SerialNumber { get; set; }
     public int SenderId { get; set; }
     public User User { get; set; }

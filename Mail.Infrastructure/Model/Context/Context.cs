@@ -15,4 +15,9 @@ public class Context:DbContext
     {
         optionsBuilder.UseSqlServer("Data Source=matterhorn.liara.cloud,31803;Initial Catalog=testMail1;User Id=sa;Password=LATgw22EGzAbfgyS41IeWR7L;MultipleActiveResultSets=true;TrustServerCertificate=true;");
     }
+// MSSQL_USER=developers
+// MSSQL_PASSWORD=Skills39~!
+// Ip:172.16.1.22
+// Port=1433
+
 }
