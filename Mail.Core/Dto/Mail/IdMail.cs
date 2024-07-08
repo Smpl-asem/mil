@@ -8,6 +8,7 @@ public class IdMail
     public List<int> CarbonCopysId { get; set; }
     public int FlagDelete { get; set; } // 1.Normal / 2.Trash / 3.Delete
     public List<int> MessageLogsId { get; set; }
+    public List<int> MyProperty { get; set; }
     // Text ->
     public string Subject { get; set; }
     public string BodyText { get; set; }

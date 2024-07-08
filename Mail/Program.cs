@@ -12,6 +12,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IAuth,AuthRepository>();
 builder.Services.AddScoped<IUser,UsersRepository>();
+builder.Services.AddDbContext<Context>();
+builder.Services.AddScoped<MyFilter>();
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -63,6 +66,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         }
     });
 });
+
+
+
 
 var app = builder.Build();
 

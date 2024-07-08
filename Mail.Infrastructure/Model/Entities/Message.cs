@@ -15,8 +15,9 @@ public class Message
     // public List<int> CarbonCopysId { get; set; }
     public List<CarbonCopys> CarbonCopys { get; set; }
     public int FlagDelete { get; set; } // 1.Normal / 2.Trash / 3.Delete
-    // public List<int> MessageLogsId { get; set; }
+    // public List<int> MessageLogsId { get; set; } (generic type)
     public List<MessageLogs> MessageLogs { get; set; }
+    public List<int> ConnectedUser { get; set; }
 
     // Text ->
     public string Subject { get; set; }

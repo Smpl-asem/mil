@@ -1,8 +1,8 @@
 public class NewMail
 {
     public string SerialNumber { get; set; }
-    public int SenderId { get; set; }
-    public string SenderIp { get; set; }
+    // public int SenderId { get; set; }
+    // public string SenderIp { get; set; }
     public List<int> ReceiversId { get; set; }
     public List<int> CarbonCopysId { get; set; }
 

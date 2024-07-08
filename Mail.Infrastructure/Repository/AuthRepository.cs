@@ -82,7 +82,7 @@ public class AuthRepository : IAuth
         if (check == null){
             return "Invalid Username";
         }
-        else if(!check.IsCodeValid){
+        else if(check.IsCodeValid != true){
             return "Invalid Sms Service , Try Again.";
         }
         else{

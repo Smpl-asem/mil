@@ -8,4 +8,5 @@ public class ShortMail
     public string Subject { get; set; }
     public string BodyText { get; set; }
     public string type { get; set; }
+    public DateTime CreatedTime { get; set; }
 }

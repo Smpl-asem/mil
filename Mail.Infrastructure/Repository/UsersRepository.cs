@@ -1,7 +1,11 @@
 
 public class UsersRepository : IUser
 {
-    private Context db = new Context();
+    private Context db ;
+    public UsersRepository(Context _db)
+    {
+        db = _db;
+    }
     public string ChangePassword(string Username , NewPass user)
     {
         User check = db.user_tbl.FirstOrDefault(x=>x.Username==Username);
