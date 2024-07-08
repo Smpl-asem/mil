@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IAuth,AuthRepository>();
 builder.Services.AddScoped<IUser,UsersRepository>();
+builder.Services.AddScoped<IMail,MailRepository>();
 builder.Services.AddDbContext<Context>();
 builder.Services.AddScoped<MyFilter>();
 

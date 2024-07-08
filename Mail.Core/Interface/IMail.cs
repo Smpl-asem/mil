@@ -1,6 +1,6 @@
 public interface IMail
 {
-    public string NewMail(NewMail message , string Username , List<int> ReceiversId , List<int> CarbonCopiesId);
+    public string AddNewMail(NewMail message , string Username ,int ReceiversId , int CarbonCopiesId);
     public IdMail ReadMailById(int MessageId);
     public List<ShortMail> Index(string Username);
     public List<ShortMail> Sent(string Username);

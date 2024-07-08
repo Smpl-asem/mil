@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 public class MailRepository : IMail
 {
     private Context db = new Context();
-    public string NewMail(NewMail message, string Username , List<int> ReceiversId , List<int> CarbonCopiesId){
+    public string AddNewMail(NewMail message, string Username , int ReceiversId , int CarbonCopiesId){
         int sentId = Convert.ToInt32(db.user_tbl.FirstOrDefault(x=> x.Username == Username).Id);
         db.Message_tbl.Add( new Message{
             SerialNumber = message.SerialNumber,
@@ -16,28 +16,40 @@ public class MailRepository : IMail
             FlagDelete = 0,
             Subject = message.Subject,
             BodyText = message.BodyText,
-            ConnectedUser = [sentId, .. ReceiversId , .. CarbonCopiesId],
+            // ConnectedUser = [sentId, .. ReceiversId , .. CarbonCopiesId],
+            ConnectedUser = [sentId,  ReceiversId ,  CarbonCopiesId],
             CreateTime = DateTime.Now
         });
         db.SaveChanges();
         int NewMessageId = db.Message_tbl.FirstOrDefault(x=> x.SerialNumber == message.SerialNumber).Id;
         
-        foreach (int item in ReceiversId)
-        {
+        // foreach (int item in ReceiversId)
+        // {
+        //     db.Receivers_tbl.Add(new Receivers{
+        //         MessageId = NewMessageId,
+        //         ReceiversId = item,
+        //         isReaded = false
+        //     });
+        // }
+        // foreach (var item in CarbonCopiesId)
+        // {
+        //     db.CarbonCopys_tbl.Add(new CarbonCopys{
+        //         MessageId = NewMessageId,
+        //         CarbonCopysId = item,
+        //         isReaded = false
+        //     });
+        // }
             db.Receivers_tbl.Add(new Receivers{
                 MessageId = NewMessageId,
-                ReceiversId = item,
+                ReceiversId = ReceiversId,
                 isReaded = false
             });
-        }
-        foreach (var item in CarbonCopiesId)
-        {
             db.CarbonCopys_tbl.Add(new CarbonCopys{
                 MessageId = NewMessageId,
-                CarbonCopysId = item,
+                CarbonCopysId = CarbonCopiesId,
                 isReaded = false
             });
-        }
+
         db.SaveChanges();
         return "succesful";
     }

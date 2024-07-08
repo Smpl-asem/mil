@@ -49,7 +49,8 @@ public class AuthRepository : IAuth
                 SmsCode = "-1",
                 Profile = user.Profile,
                 token = "",
-                Phone = user.Phone
+                Phone = user.Phone,
+                IsCodeValid = false
             };
             db.user_tbl.Add(newUser);
             db.SaveChanges();
